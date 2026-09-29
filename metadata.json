@@ -1,0 +1,6 @@
+{
+  "name": "Electro IPTV",
+  "description": "Next-gen Electro IPTV player supporting Xtream Codes, M3U playlists, Stalker Portal, EPG with dark mode, customizable video player, and stream settings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
