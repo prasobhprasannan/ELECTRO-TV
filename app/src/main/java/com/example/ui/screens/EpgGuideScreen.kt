@@ -140,14 +140,15 @@ fun EpgGuideScreen(
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            // Big, Prominent Search Bar
+            // Big, Prominent Search Bar (Larger, perfectly aligned, no clipped text)
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 placeholder = {
                     Text(
                         text = "Search programs, movies, or sports...",
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
+                        lineHeight = 20.sp,
                         color = TextMutedDark,
                         maxLines = 1,
                         overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis
@@ -158,27 +159,28 @@ fun EpgGuideScreen(
                         imageVector = Icons.Default.Search,
                         contentDescription = "Search",
                         tint = if (searchQuery.isNotEmpty()) YouTubeBlue else TextSecondaryDark,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(22.dp)
                     )
                 },
                 trailingIcon = {
                     if (searchQuery.isNotEmpty()) {
                         IconButton(onClick = { searchQuery = "" }) {
-                            Icon(Icons.Default.Clear, contentDescription = "Clear", tint = TextSecondaryDark, modifier = Modifier.size(18.dp))
+                            Icon(Icons.Default.Clear, contentDescription = "Clear", tint = TextSecondaryDark, modifier = Modifier.size(20.dp))
                         }
                     }
                 },
                 singleLine = true,
                 textStyle = androidx.compose.ui.text.TextStyle(
-                    fontSize = 14.5.sp,
+                    fontSize = 15.sp,
+                    lineHeight = 20.sp,
                     color = TextPrimaryDark,
                     fontWeight = FontWeight.Normal
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(52.dp)
+                    .height(56.dp)
                     .testTag("epg_search_input"),
-                shape = RoundedCornerShape(26.dp),
+                shape = RoundedCornerShape(28.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = Color(0xFF1E1E1E),
                     unfocusedContainerColor = Color(0xFF1E1E1E),
@@ -204,16 +206,19 @@ fun EpgGuideScreen(
                 Surface(
                     color = if (isSelected) YouTubePillActiveBg else YouTubePillBg,
                     shape = RoundedCornerShape(20.dp),
-                    modifier = Modifier.clickable { selectedCatIndex = index }
+                    modifier = Modifier
+                        .height(38.dp)
+                        .clickable { selectedCatIndex = index }
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp)
+                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)
                     ) {
                         Text(
                             text = cat,
                             color = if (isSelected) YouTubePillActiveText else Color.White,
-                            fontSize = 12.5.sp,
+                            fontSize = 13.sp,
+                            lineHeight = 16.sp,
                             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                             maxLines = 1
                         )

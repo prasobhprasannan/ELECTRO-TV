@@ -159,43 +159,43 @@ fun PlaylistsScreen(
                 ) {
                     Surface(
                         color = Color(0xFF272727),
-                        shape = RoundedCornerShape(23.dp),
+                        shape = RoundedCornerShape(24.dp),
                         modifier = Modifier
                             .weight(1f)
-                            .height(46.dp)
+                            .height(48.dp)
                             .clickable { onOpenAddPlaylist() }
                     ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(horizontal = 12.dp),
+                                .padding(horizontal = 14.dp),
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(Icons.Default.Add, contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(6.dp))
-                            Text("Add Playlist", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
+                            Icon(Icons.Default.Add, contentDescription = null, tint = Color.White, modifier = Modifier.size(19.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Add Playlist", color = Color.White, fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
                         }
                     }
 
                     Surface(
                         color = Color(0xFF272727),
-                        shape = RoundedCornerShape(23.dp),
+                        shape = RoundedCornerShape(24.dp),
                         modifier = Modifier
                             .weight(1f)
-                            .height(46.dp)
+                            .height(48.dp)
                             .clickable { onOpenAddPlaylist() }
                     ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(horizontal = 12.dp),
+                                .padding(horizontal = 14.dp),
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(Icons.Default.SwapHoriz, contentDescription = null, tint = Color.White, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(6.dp))
-                            Text("Switch Profile", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
+                            Icon(Icons.Default.SwapHoriz, contentDescription = null, tint = Color.White, modifier = Modifier.size(19.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Switch Profile", color = Color.White, fontSize = 13.5.sp, fontWeight = FontWeight.SemiBold, maxLines = 1)
                         }
                     }
                 }
@@ -445,20 +445,21 @@ fun PlaylistsScreen(
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Surface(
                                 color = Color(0xFF272727),
-                                shape = RoundedCornerShape(17.dp),
+                                shape = RoundedCornerShape(18.dp),
                                 modifier = Modifier
-                                    .height(34.dp)
+                                    .height(36.dp)
                                     .clickable { onSwitchProfile(profile.id) }
                             ) {
                                 Box(
                                     contentAlignment = Alignment.Center,
-                                    modifier = Modifier.padding(horizontal = 14.dp)
+                                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp)
                                 ) {
                                     Text(
                                         text = "Switch",
                                         color = Color.White,
-                                        fontSize = 12.sp,
-                                        fontWeight = FontWeight.Bold
+                                        fontSize = 12.5.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        maxLines = 1
                                     )
                                 }
                             }

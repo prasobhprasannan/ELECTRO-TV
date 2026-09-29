@@ -321,7 +321,7 @@ fun MainShellScreen(
                         Triple("Live TV", Icons.Filled.LiveTv to Icons.Outlined.LiveTv, 0),
                         Triple("Movies", Icons.Filled.Movie to Icons.Outlined.Movie, 1),
                         Triple("Series", Icons.Filled.Tv to Icons.Outlined.Tv, 2),
-                        Triple("EPG Guide", Icons.Filled.CalendarMonth to Icons.Outlined.CalendarMonth, 3),
+                        Triple("EPG", Icons.Filled.CalendarMonth to Icons.Outlined.CalendarMonth, 3),
                         Triple("You", Icons.Filled.AccountCircle to Icons.Outlined.AccountCircle, 4)
                     )
 
@@ -342,7 +342,7 @@ fun MainShellScreen(
                             label = {
                                 Text(
                                     text = label,
-                                    fontSize = 11.sp,
+                                    fontSize = 11.5.sp,
                                     fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
                                     maxLines = 1,
                                     softWrap = false

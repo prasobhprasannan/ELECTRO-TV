@@ -198,11 +198,11 @@ fun MoviesScreen(
             }
         }
 
-        // Big, Prominent Search Bar
+        // Big, Prominent Search Bar (Larger, perfectly aligned, no clipped text)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 14.dp, vertical = 4.dp)
+                .padding(horizontal = 14.dp, vertical = 6.dp)
         ) {
             OutlinedTextField(
                 value = searchQuery,
@@ -211,7 +211,8 @@ fun MoviesScreen(
                     Text(
                         text = "Search movies by title, genre, cast...",
                         color = TextMutedDark,
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
+                        lineHeight = 20.sp,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -221,12 +222,13 @@ fun MoviesScreen(
                         imageVector = Icons.Default.Search,
                         contentDescription = "Search",
                         tint = if (searchQuery.isNotEmpty()) YouTubeBlue else TextSecondaryDark,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(22.dp)
                     )
                 },
                 singleLine = true,
                 textStyle = androidx.compose.ui.text.TextStyle(
-                    fontSize = 14.5.sp,
+                    fontSize = 15.sp,
+                    lineHeight = 20.sp,
                     color = Color.White,
                     fontWeight = FontWeight.Normal
                 ),
@@ -238,17 +240,17 @@ fun MoviesScreen(
                     focusedBorderColor = YouTubeBlue,
                     unfocusedBorderColor = Color(0xFF333333)
                 ),
-                shape = RoundedCornerShape(26.dp),
+                shape = RoundedCornerShape(28.dp),
                 trailingIcon = {
                     if (searchQuery.isNotEmpty()) {
                         IconButton(onClick = { onSearchQueryChange("") }) {
-                            Icon(Icons.Default.Clear, contentDescription = "Clear", tint = TextSecondaryDark, modifier = Modifier.size(18.dp))
+                            Icon(Icons.Default.Clear, contentDescription = "Clear", tint = TextSecondaryDark, modifier = Modifier.size(20.dp))
                         }
                     }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(52.dp)
+                    .height(56.dp)
                     .testTag("movies_search_input")
             )
         }
@@ -268,26 +270,28 @@ fun MoviesScreen(
                     color = if (isSelected) YouTubePillActiveBg else YouTubePillBg,
                     shape = RoundedCornerShape(20.dp),
                     modifier = Modifier
+                        .height(38.dp)
                         .clickable { onSelectGenre(genre) }
                         .testTag("movie_genre_pill_$genre")
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp)
+                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)
                     ) {
                         if (genre == "Favorites") {
                             Icon(
                                 imageVector = Icons.Default.Star,
                                 contentDescription = null,
                                 tint = if (isSelected) Color.Black else AmberGold,
-                                modifier = Modifier.size(14.dp)
+                                modifier = Modifier.size(15.dp)
                             )
                             Spacer(modifier = Modifier.width(5.dp))
                         }
                         Text(
                             text = genre,
                             color = if (isSelected) YouTubePillActiveText else Color.White,
-                            fontSize = 12.5.sp,
+                            fontSize = 13.sp,
+                            lineHeight = 16.sp,
                             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                             maxLines = 1
                         )

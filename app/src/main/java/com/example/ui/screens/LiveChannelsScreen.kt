@@ -277,11 +277,11 @@ fun LiveChannelsScreen(
                 }
             }
 
-            // Big, Prominent Search Bar
+            // Big, Prominent Search Bar (Larger, perfectly aligned, no clipped text)
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 14.dp, vertical = 4.dp)
+                    .padding(horizontal = 14.dp, vertical = 6.dp)
             ) {
                 OutlinedTextField(
                     value = searchQuery,
@@ -289,7 +289,8 @@ fun LiveChannelsScreen(
                     placeholder = {
                         Text(
                             text = "Search live channels & programs...",
-                            fontSize = 14.sp,
+                            fontSize = 15.sp,
+                            lineHeight = 20.sp,
                             color = TextMutedDark,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -300,7 +301,7 @@ fun LiveChannelsScreen(
                             imageVector = Icons.Default.Search,
                             contentDescription = "Search",
                             tint = if (searchQuery.isNotEmpty()) YouTubeBlue else TextSecondaryDark,
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(22.dp)
                         )
                     },
                     trailingIcon = {
@@ -310,7 +311,7 @@ fun LiveChannelsScreen(
                                     imageVector = Icons.Default.Clear,
                                     contentDescription = "Clear",
                                     tint = TextSecondaryDark,
-                                    modifier = Modifier.size(18.dp)
+                                    modifier = Modifier.size(20.dp)
                                 )
                             }
                         }
@@ -318,11 +319,12 @@ fun LiveChannelsScreen(
                     singleLine = true,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(52.dp)
+                        .height(56.dp)
                         .testTag("youtube_search_input"),
-                    shape = RoundedCornerShape(26.dp),
+                    shape = RoundedCornerShape(28.dp),
                     textStyle = androidx.compose.ui.text.TextStyle(
-                        fontSize = 14.5.sp,
+                        fontSize = 15.sp,
+                        lineHeight = 20.sp,
                         color = TextPrimaryDark,
                         fontWeight = FontWeight.Normal
                     ),
@@ -352,12 +354,13 @@ fun LiveChannelsScreen(
                         color = Color(0xFF272727),
                         shape = RoundedCornerShape(20.dp),
                         modifier = Modifier
+                            .height(38.dp)
                             .clickable { isCategoryDrawerOpen = true }
                             .testTag("btn_drawer_pill")
                     ) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp)
+                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Menu,
@@ -369,7 +372,8 @@ fun LiveChannelsScreen(
                             Text(
                                 text = "Groups",
                                 color = Color.White,
-                                fontSize = 12.5.sp,
+                                fontSize = 13.sp,
+                                lineHeight = 16.sp,
                                 fontWeight = FontWeight.SemiBold,
                                 maxLines = 1
                             )
@@ -382,26 +386,28 @@ fun LiveChannelsScreen(
                             color = if (isSelected) YouTubePillActiveBg else YouTubePillBg,
                             shape = RoundedCornerShape(20.dp),
                             modifier = Modifier
+                                .height(38.dp)
                                 .clickable { onCategorySelected(cat) }
                                 .testTag("channel_cat_pill_$cat")
                         ) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(horizontal = 14.dp, vertical = 7.dp)
+                                modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)
                             ) {
                                 if (cat == "Favorites") {
                                     Icon(
                                         imageVector = Icons.Default.Star,
                                         contentDescription = null,
                                         tint = if (isSelected) Color.Black else AmberGold,
-                                        modifier = Modifier.size(14.dp)
+                                        modifier = Modifier.size(15.dp)
                                     )
                                     Spacer(modifier = Modifier.width(5.dp))
                                 }
                                 Text(
                                     text = cat,
                                     color = if (isSelected) YouTubePillActiveText else Color.White,
-                                    fontSize = 12.5.sp,
+                                    fontSize = 13.sp,
+                                    lineHeight = 16.sp,
                                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                                     maxLines = 1
                                 )
@@ -688,23 +694,35 @@ fun LiveChannelsScreen(
                             OutlinedTextField(
                                 value = drawerFilterQuery,
                                 onValueChange = { drawerFilterQuery = it },
-                                placeholder = { Text("Filter groups...", fontSize = 12.sp, color = TextMutedDark) },
+                                placeholder = {
+                                    Text(
+                                        text = "Filter groups...",
+                                        fontSize = 13.5.sp,
+                                        color = TextMutedDark,
+                                        lineHeight = 18.sp
+                                    )
+                                },
                                 leadingIcon = {
-                                    Icon(Icons.Default.Search, contentDescription = null, tint = TextSecondaryDark, modifier = Modifier.size(16.dp))
+                                    Icon(Icons.Default.Search, contentDescription = null, tint = TextSecondaryDark, modifier = Modifier.size(18.dp))
                                 },
                                 trailingIcon = {
                                     if (drawerFilterQuery.isNotEmpty()) {
                                         IconButton(onClick = { drawerFilterQuery = "" }) {
-                                            Icon(Icons.Default.Clear, contentDescription = "Clear", tint = TextSecondaryDark, modifier = Modifier.size(14.dp))
+                                            Icon(Icons.Default.Clear, contentDescription = "Clear", tint = TextSecondaryDark, modifier = Modifier.size(16.dp))
                                         }
                                     }
                                 },
                                 singleLine = true,
+                                textStyle = androidx.compose.ui.text.TextStyle(
+                                    fontSize = 13.5.sp,
+                                    lineHeight = 18.sp,
+                                    color = Color.White
+                                ),
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = 14.dp, vertical = 4.dp)
-                                    .height(44.dp),
-                                shape = RoundedCornerShape(12.dp),
+                                    .height(50.dp),
+                                shape = RoundedCornerShape(14.dp),
                                 colors = OutlinedTextFieldDefaults.colors(
                                     focusedContainerColor = Color(0xFF222222),
                                     unfocusedContainerColor = Color(0xFF222222),

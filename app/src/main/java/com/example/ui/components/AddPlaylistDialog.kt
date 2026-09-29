@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -340,9 +341,15 @@ fun AddPlaylistBottomSheet(
                                 containerColor = if (!m3uIsRawText) ElectricIndigo.copy(alpha = 0.25f) else Color.Transparent
                             ),
                             border = androidx.compose.foundation.BorderStroke(1.dp, if (!m3uIsRawText) NeonCyan else MidnightBorder),
+                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
                             modifier = Modifier.weight(1f)
                         ) {
-                            Text("M3U URL", fontSize = 12.sp, color = if (!m3uIsRawText) NeonCyan else TextSecondaryDark)
+                            Text(
+                                text = "M3U URL",
+                                fontSize = 12.5.sp,
+                                maxLines = 1,
+                                color = if (!m3uIsRawText) NeonCyan else TextSecondaryDark
+                            )
                         }
 
                         OutlinedButton(
@@ -351,9 +358,15 @@ fun AddPlaylistBottomSheet(
                                 containerColor = if (m3uIsRawText) ElectricIndigo.copy(alpha = 0.25f) else Color.Transparent
                             ),
                             border = androidx.compose.foundation.BorderStroke(1.dp, if (m3uIsRawText) NeonCyan else MidnightBorder),
+                            contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
                             modifier = Modifier.weight(1f)
                         ) {
-                            Text("Paste M3U Text", fontSize = 12.sp, color = if (m3uIsRawText) NeonCyan else TextSecondaryDark)
+                            Text(
+                                text = "Paste M3U Text",
+                                fontSize = 12.5.sp,
+                                maxLines = 1,
+                                color = if (m3uIsRawText) NeonCyan else TextSecondaryDark
+                            )
                         }
                     }
 
