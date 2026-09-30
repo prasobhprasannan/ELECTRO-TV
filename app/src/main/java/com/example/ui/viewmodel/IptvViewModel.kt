@@ -394,6 +394,31 @@ class IptvViewModel(application: Application) : AndroidViewModel(application) {
         _addProfileState.value = AddProfileUiState()
     }
 
+    // In-Built DNS Management
+    val dnsManager = com.example.data.dns.AppDnsManager.getInstance(getApplication())
+    val dnsConfig: StateFlow<com.example.data.dns.DnsConfig> = dnsManager.dnsConfig
+
+    fun setDnsEnabled(enabled: Boolean) {
+        dnsManager.setDnsEnabled(enabled)
+    }
+
+    fun setDnsProvider(provider: com.example.data.dns.DnsProvider) {
+        dnsManager.setDnsProvider(provider)
+    }
+
+    fun setCustomDnsIp(ip: String) {
+        dnsManager.setCustomDnsIp(ip)
+    }
+
+    fun clearDnsCache() {
+        com.example.data.network.AppNetworkClient.getResolver(getApplication()).clearCache()
+    }
+
+    suspend fun testDnsConnection(): com.example.data.dns.DnsTestResult {
+        val resolver = com.example.data.network.AppNetworkClient.getResolver(getApplication())
+        return dnsManager.testDnsConnection(resolver)
+    }
+
     override fun onCleared() {
         super.onCleared()
         playerManager.release()

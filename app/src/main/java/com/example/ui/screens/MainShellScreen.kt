@@ -105,6 +105,7 @@ fun MainShellScreen(
     val watchlists by viewModel.watchlists.collectAsState()
     val epgMap by viewModel.epgMap.collectAsState()
     val addProfileState by viewModel.addProfileState.collectAsState()
+    val dnsConfig by viewModel.dnsConfig.collectAsState()
 
     // Movies state
     val filteredMovies by viewModel.filteredMovies.collectAsState()
@@ -444,7 +445,13 @@ fun MainShellScreen(
                         showAddPlaylistSheet = true
                     },
                     onOpenAbout = { showAboutScreen = true },
-                    onChannelClick = onPlayChannel
+                    onChannelClick = onPlayChannel,
+                    dnsConfig = dnsConfig,
+                    onToggleDns = { viewModel.setDnsEnabled(it) },
+                    onSelectDnsProvider = { viewModel.setDnsProvider(it) },
+                    onSetCustomDnsIp = { viewModel.setCustomDnsIp(it) },
+                    onClearDnsCache = { viewModel.clearDnsCache() },
+                    onTestDns = { viewModel.testDnsConnection() }
                 )
             }
         }

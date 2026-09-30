@@ -10,11 +10,20 @@ import java.util.regex.Pattern
 
 object M3uParser {
 
-    private val httpClient = OkHttpClient.Builder()
-        .connectTimeout(15, TimeUnit.SECONDS)
-        .readTimeout(20, TimeUnit.SECONDS)
-        .followRedirects(true)
-        .build()
+    private val httpClient: OkHttpClient
+        get() = try {
+            AppNetworkClient.getOkHttpClient(com.example.IptvApplication.instance)
+        } catch (_: Exception) {
+            defaultHttpClient
+        }
+
+    private val defaultHttpClient by lazy {
+        OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .followRedirects(true)
+            .build()
+    }
 
     private val TVG_ID_REGEX = Pattern.compile("tvg-id=[\"']([^\"']*)[\"']", Pattern.CASE_INSENSITIVE)
     private val TVG_NAME_REGEX = Pattern.compile("tvg-name=[\"']([^\"']*)[\"']", Pattern.CASE_INSENSITIVE)

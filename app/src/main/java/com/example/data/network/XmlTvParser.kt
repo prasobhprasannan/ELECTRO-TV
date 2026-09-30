@@ -16,10 +16,19 @@ import java.util.zip.GZIPInputStream
 
 object XmlTvParser {
 
-    private val httpClient = OkHttpClient.Builder()
-        .connectTimeout(20, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .build()
+    private val httpClient: OkHttpClient
+        get() = try {
+            AppNetworkClient.getOkHttpClient(com.example.IptvApplication.instance)
+        } catch (_: Exception) {
+            defaultHttpClient
+        }
+
+    private val defaultHttpClient by lazy {
+        OkHttpClient.Builder()
+            .connectTimeout(20, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .build()
+    }
 
     private val xmltvDateFormats = listOf(
         SimpleDateFormat("yyyyMMddHHmmss Z", Locale.US),

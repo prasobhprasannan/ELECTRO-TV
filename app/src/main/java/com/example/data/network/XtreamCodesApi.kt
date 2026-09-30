@@ -24,11 +24,20 @@ data class XtreamAuthResult(
 
 object XtreamCodesApi {
 
-    private val httpClient = OkHttpClient.Builder()
-        .connectTimeout(15, TimeUnit.SECONDS)
-        .readTimeout(25, TimeUnit.SECONDS)
-        .followRedirects(true)
-        .build()
+    private val httpClient: OkHttpClient
+        get() = try {
+            AppNetworkClient.getOkHttpClient(com.example.IptvApplication.instance)
+        } catch (_: Exception) {
+            defaultHttpClient
+        }
+
+    private val defaultHttpClient by lazy {
+        OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(25, TimeUnit.SECONDS)
+            .followRedirects(true)
+            .build()
+    }
 
     private fun normalizeServerUrl(url: String): String {
         var clean = url.trim()

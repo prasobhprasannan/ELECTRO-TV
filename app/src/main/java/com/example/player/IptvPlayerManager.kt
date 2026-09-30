@@ -13,6 +13,7 @@ import androidx.media3.common.Tracks
 import androidx.media3.common.VideoSize
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.datasource.okhttp.OkHttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.hls.HlsMediaSource
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
@@ -94,11 +95,9 @@ class IptvPlayerManager(private val context: Context) {
     private val _uiState = MutableStateFlow(PlayerUiState())
     val uiState: StateFlow<PlayerUiState> = _uiState.asStateFlow()
 
-    private val httpDataSourceFactory = DefaultHttpDataSource.Factory()
-        .setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) VLC/3.0.18")
-        .setConnectTimeoutMs(15000)
-        .setReadTimeoutMs(20000)
-        .setAllowCrossProtocolRedirects(true)
+    private val httpDataSourceFactory = OkHttpDataSource.Factory(
+        com.example.data.network.AppNetworkClient.getOkHttpClient(context)
+    ).setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) VLC/3.0.18")
 
     fun getPlayer(): ExoPlayer {
         if (exoPlayer == null) {
